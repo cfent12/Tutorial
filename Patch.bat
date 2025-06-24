@@ -1,13 +1,13 @@
 @echo off
-set SOURCE=ÆÐÄ¡ ÆÄÀÏ À§Ä¡
-set DESTINATION=ÆÐÄ¡ ÆÄÀÏÀ» ³ÖÀ» À§Ä¡
-set TEMP=ÆÐÄ¡ ÆÄÀÏ ÀÓ½Ã º¸°ü À§Ä¡
+set SOURCE=íŒ¨ì¹˜ íŒŒì¼ ìœ„ì¹˜
+set DESTINATION=íŒ¨ì¹˜ íŒŒì¼ì„ ë„£ì„ ìœ„ì¹˜
+set TEMP=íŒ¨ì¹˜ íŒŒì¼ ìž„ì‹œ ë³´ê´€ ìœ„ì¹˜
 
 if not exist "%DESTINATION%\\" (
-    echo ´ë»ó µð·ºÅä¸®°¡ ¾ø½À´Ï´Ù. -^> C:\NEW_VTS_TEST
-	echo ÆÄÀÏ º¹»ç¸¦ Áß´ÜÇÕ´Ï´Ù.
+    echo ëŒ€ìƒ ë””ë ‰í† ë¦¬ê°€ ì—†ìŠµë‹ˆë‹¤. -^> C:\NEW_VTS_TEST
+	echo íŒŒì¼ ë³µì‚¬ë¥¼ ì¤‘ë‹¨í•©ë‹ˆë‹¤.
 	echo.
-	echo *****ÇØ´ç ³»¿ëÀ» IT´ã´çÀÚ¿¡°Ô ¹®ÀÇÇØÁÖ¼¼¿ä.*****
+	echo *****í•´ë‹¹ ë‚´ìš©ì„ ITë‹´ë‹¹ìžì—ê²Œ ë¬¸ì˜í•´ì£¼ì„¸ìš”.*****
 	echo.
     pause
 	exit /b
@@ -17,24 +17,24 @@ if not exist "%TEMP%\\" (
     mkdir "%TEMP%"
 )
 
-echo ÀÓ½ÃÀúÀå ÆÄÀÏÀ» º¹»ç ÁßÀÔ´Ï´Ù...
+echo ìž„ì‹œì €ìž¥ íŒŒì¼ì„ ë³µì‚¬ ì¤‘ìž…ë‹ˆë‹¤...
 xcopy "%SOURCE%\*" "%TEMP%\" /E /H /C /Y /F
 if errorlevel 1 (
 	echo.
-    echo *****"%SOURCE%" À§Ä¡¿¡ Á¢±ÙÇÒ ¼ö ¾ø½À´Ï´Ù.*****
+    echo *****"%SOURCE%" ìœ„ì¹˜ì— ì ‘ê·¼í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.*****
 	echo.
 	pause
 	exit /b
 ) else (
-    echo ÀÓ½ÃÀúÀå ÆÄÀÏ º¹»ç°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.
+    echo ìž„ì‹œì €ìž¥ íŒŒì¼ ë³µì‚¬ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.
 )
 
 for /r "%TEMP%" %%f in (*.*) do (
     powershell -NoProfile -Command "try { Unblock-File -LiteralPath '%%f' } catch {}"
 )
-echo ÀÓ½ÃÀúÀå ÆÄÀÏ Â÷´Ü ÇØÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.
+echo ìž„ì‹œì €ìž¥ íŒŒì¼ ì°¨ë‹¨ í•´ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.
 
-echo ÆÄÀÏÀ» º¹»ç ÁßÀÔ´Ï´Ù...
+echo íŒŒì¼ì„ ë³µì‚¬ ì¤‘ìž…ë‹ˆë‹¤...
 robocopy "%TEMP%" "%DESTINATION%" /MOVE /E /COPYALL /IS /IT /R:1 /W:1 /NFL /NDL >nul
 echo.
 if %ERRORLEVEL% GEQ 8 (
@@ -43,12 +43,12 @@ if %ERRORLEVEL% GEQ 8 (
 	)
 	
     if %ERRORLEVEL% GEQ 16 (
-		echo *****°ü¸®ÀÚ ±ÇÇÑÀ¸·Î ½ÇÇàÇØ ÁÖ¼¼¿ä.*****
+		echo *****ê´€ë¦¬ìž ê¶Œí•œìœ¼ë¡œ ì‹¤í–‰í•´ ì£¼ì„¸ìš”.*****
 	) else (
-		echo *****TEST VTS Á¾·á ÈÄ ½ÇÇàÇØ ÁÖ¼¼¿ä.*****
+		echo *****í”„ë¡œê·¸ëž¨ ì¢…ë£Œ í›„ ì‹¤í–‰í•´ ì£¼ì„¸ìš”.*****
 	)
 ) else (
-    echo *****ÆÐÄ¡°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.*****
+    echo *****íŒ¨ì¹˜ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.*****
 )
 
 echo.
