@@ -1,10 +1,10 @@
 @echo off
 set SOURCE=패치 파일 위치
 set DESTINATION=패치 파일을 넣을 위치
-set TEMP=패치 파일 임시 보관 위치
+set TEMP=%DESTINATION%\Temp
 
 if not exist "%DESTINATION%\\" (
-    echo 대상 디렉토리가 없습니다. -^> C:\NEW_VTS_TEST
+    echo 대상 디렉토리가 없습니다. -^> %DESTINATION%
 	echo 파일 복사를 중단합니다.
 	echo.
 	echo *****해당 내용을 IT담당자에게 문의해주세요.*****
